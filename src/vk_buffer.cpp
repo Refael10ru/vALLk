@@ -17,7 +17,9 @@ Buffer::Buffer(VmaAllocator allocator, VkDeviceSize size, VkBufferUsageFlags usa
     vmaCreateBuffer(_allocator, &bufferInfo, &vmaInfo, &_handle, &_alloc, nullptr);
 }
 
-Buffer::Buffer(VmaAllocator allocator, VkDeviceSize size, VkBufferUsageFlags usage, VkSparseBufferMemoryBindInfo sparseInfo, VkQueue sparseQueue) noexcept {
+Buffer::Buffer(VmaAllocator allocator, VkDeviceSize size, VkBufferUsageFlags usage, VkSparseBufferMemoryBindInfo sparseInfo, VkQueue sparseQueue) noexcept :
+    _allocator{ allocator }
+{
     VkBufferCreateInfo bufferInfo{};
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
     bufferInfo.size = size;
