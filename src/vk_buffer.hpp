@@ -7,8 +7,8 @@
 
 namespace vallk::vk {
 
-// can be an object, just need an interface
-extern void createSparse(VkBindSparseInfo, VkQueue);
+// TODO: can be an object, just need an interface
+//extern void createSparse(VkBindSparseInfo, VkQueue);
 
 class Buffer {
     Buffer(VmaAllocator allocator, VkDeviceSize size, VkBufferUsageFlags usage) noexcept;

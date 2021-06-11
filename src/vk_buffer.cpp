@@ -36,7 +36,7 @@ Buffer::Buffer(VmaAllocator allocator, VkDeviceSize size, VkBufferUsageFlags usa
     submitInfo.pBufferBinds = &sparseInfo; // if issuing a dealyed command, make a copy on sparse end
     submitInfo.bufferBindCount = 1;
 
-    createSparse(submitInfo, sparseQueue);
+    // TODO: createSparse(submitInfo, sparseQueue);
 }
 
 Buffer::~Buffer() {
