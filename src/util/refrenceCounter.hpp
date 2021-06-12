@@ -6,6 +6,8 @@ namespace vallk::util
 template<class T>
 class Ref
 {
+    RefCounter<T>* m_refrence;
+public:
     Ref() = delete;
 
     Ref(RefCounter<T>& refcounter) : m_refrence(refcounter) 
@@ -19,8 +21,6 @@ class Ref
 
     ~Ref() { if(this->m_refrence != nullptr) this->m_refrence.m_counter--; }
 
-    RefCounter<T>* m_refrence;
-public:
 
     T& operator*()
     {
