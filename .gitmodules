@@ -13,3 +13,6 @@
 [submodule "extern/entt"]
 	path = extern/entt
 	url = https://github.com/skypjack/entt.git
+[submodule "extern/vulkan"]
+	path = extern/vulkan
+	url = https://github.com/SaschaWillems/Vulkan.git
