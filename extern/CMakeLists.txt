@@ -32,9 +32,9 @@ add_library(vma INTERFACE)
 target_include_directories(vma INTERFACE ${PROJECT_SOURCE_DIR}/vma/include)
 
 # 6. find vulkan
-if (NOT DEFINED ENV{VULKAN_SDK})
-    message(FATAL_ERROR "-- Could not find vulkan SDK, make sure VULKAN_SDK env var is populated")
-endif()
+#if (NOT DEFINED ENV{VULKAN_SDK})
+#    message(FATAL_ERROR "-- Could not find vulkan SDK, make sure VULKAN_SDK env var is populated")
+#endif()
 
 if (WIN32)
     find_library(VULKAN_LIBRARY NAMES vulkan-1 HINTS "$ENV{VULKAN_SDK}/Lib")
@@ -49,7 +49,8 @@ if (WIN32)
     set_target_properties(vulkan PROPERTIES IMPORTED_LOCATION ${VULKAN_LIBRARY})
     set_target_properties(vulkan PROPERTIES IMPORTED_GLOBAL TRUE)
 else()
-    set(VULKAN_INCLUDE "$ENV{VULKAN_SDK}/include")
+    # TODO: using vulkan headers so that it builds
+    set(VULKAN_INCLUDE vulkan/include)
     add_library(vulkan INTERFACE)
     target_include_directories(vulkan INTERFACE ${VULKAN_INCLUDE})
 endif()

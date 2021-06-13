@@ -1,5 +1,5 @@
-#include "vk_buffer.hpp"
-#include "vma_util.hpp"
+#include "VkBuffer.hpp"
+#include "VMAUtil.hpp"
 
 namespace vallk::vk {
 

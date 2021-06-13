@@ -1,10 +1,5 @@
+#include "VertexDataPool.hpp"
 
-
-
-
-namespace vk
-{
-
-
+namespace vk {
 
 }
