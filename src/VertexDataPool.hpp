@@ -14,7 +14,7 @@ namespace vallk::vk
 
 
 
-using VertexDataPool = util::pool_set;
+using VertexDataPool = util::pool_set<void>;
 
 
 

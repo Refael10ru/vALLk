@@ -4,55 +4,59 @@ namespace vallk::util
 {
 
 template<class T>
-class Ref
-{
-    RefCounter<T>* m_refrence;
+class ref
+{ 
 public:
-    Ref() = delete;
+    ref() = delete;
 
-    Ref(RefCounter<T>& refcounter) : m_refrence(refcounter) 
-    { this->refrence->m_counter++; }
+    ref(ref_counter<T>& refCounter) : _refrence(refCounter) 
+    { this->refrence->_counter++; }
 
-    Ref(Ref<T>& oth) : refrence(oth.m_refrence) 
-    { this->refrence->m_counter++; }
+    ref(ref<T>& oth) : refrence(oth._refrence) 
+    { this->refrence->_counter++; }
 
-    Ref(Ref<T>&& oth) : refrence(oth.m_refrence)
-    { oth.m_refrence = nullptr }
+    ref(ref<T>&& oth) : refrence(oth._refrence)
+    { oth._refrence = nullptr }
 
-    void operator=(Ref<T>& oth)
+    ~ref() { if(this->_refrence != nullptr) this->_refrence._counter--; }
+
+    void operator=(ref<T>& oth)
     {
-        this->m_refrence = oth.m_refrence;
-        this->m_refrence->m_counter++;
+        this->_refrence = oth._refrence;
+        this->_refrence->_counter++;
     }
-    void operator=(Ref<T>&& oth)
+    void operator=(ref<T>&& oth)
     {
-        this->m_refrence = oth.m_refrence;
-        oth.m_refrence = nullptr;
+        this->_refrence = oth._refrence;
+        oth._refrence = nullptr;
     }
 
     T& operator->()
     {
-        return this->m_refrence;
+        return this->_refrence;
     }
-
-    ~Ref() { if(this->m_refrence != nullptr) this->m_refrence.m_counter--; }
 
 
     T& operator*()
     {
-        return *this->m_refrence;
+        return *this->_refrence;
     }
+private:
+    ref_counter<T>* _refrence;
 };
 
 template<class T>
-class RefCounter : T
+class ref_counter : T
 // refrence Counter
 {
-    friend class Ref;
-
-    uint32_t m_counter;
 public:
-    uint32_t counter() { return this->m_counter; }
+    uint32_t counter() { return this->_counter;
+
+private:
+    friend class ref;
+
+    uint32_t _counter;
+}
 };
 
 
